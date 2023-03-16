@@ -87,7 +87,7 @@ namespace PokemonReview.Api.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> UpdateCategory(int id, [FromForm] CategoryUpdateDto categoryUpdateDto)
+        public async Task<IActionResult> UpdateCategory(int id, [FromBody] CategoryUpdateDto categoryUpdateDto)
         {
             if (categoryUpdateDto == null)
                 return BadRequest(ModelState);
