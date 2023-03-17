@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@/styles/style.css'
 import Head from 'next/head'
+import { Container } from 'react-bootstrap'
 
 export default function App({ Component, pageProps }) {
   return (
@@ -11,7 +12,11 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
         <title>Pokemon</title>
       </Head>
-      <Component {...pageProps} />
+      <main className="home__page-body">
+        <Container className="pt-5">
+          <Component {...pageProps} />
+        </Container>
+      </main>
     </>
   )
 }
