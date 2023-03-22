@@ -23,7 +23,7 @@ namespace PokemonReview.Api.Controllers
         public async Task<ActionResult> GetAllCategoriesAsync() =>
             !ModelState.IsValid ?
                  BadRequest(ModelState) :
-                 Ok(_mapper.Map<List<CategoryDto>>(await _unitOfWork.categories.GetAllTiesAsync()));
+                 Ok(_mapper.Map<List<CategoryUpdateDto>>(await _unitOfWork.categories.GetAllTiesAsync()));
 
         [HttpGet("GetCategoryById")]
         public async Task<IActionResult> GetCategoryByIdAsync(int id) =>
