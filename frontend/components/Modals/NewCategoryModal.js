@@ -19,7 +19,10 @@ export default function NewCategoryModal() {
       body: formData,
     }).then(res => {
       console.log(res.ok)
-      setCategories(prev => [...prev, { name: newCategory }])
+      setCategories(prev => [
+        ...prev,
+        { name: newCategory, id: prev[prev.length - 1].id + 1 },
+      ])
       setNewCategory('')
       handleClose()
     })

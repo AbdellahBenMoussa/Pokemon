@@ -33,6 +33,8 @@ export default function Categories() {
       <div>
         <h1 className="mb-5 text-light text-center">Pokemon Categories</h1>
         <NewCategoryModal />
+        {/* delete modal */}
+        {/* update modal */}
         <CategoriesTable />
       </div>
     </CategoriesProvider>
@@ -48,12 +50,21 @@ function CategoriesTable() {
       .then(res => setCategories(res))
   }, [])
 
+  function deleteCategory(id) {
+    fetch(`https://localhost:7192/api/Category/${id}`, {
+      method: 'DELETE',
+    }).then(res => {
+      console.log(res.ok)
+      setCategories(prev => prev.filter(item => item.id !== id))
+    })
+  }
+
   return (
     <>
       <Table striped bordered variant="light" hover>
         <thead>
           <tr>
-            <th>#</th>
+            <th>Id</th>
             <th>Name</th>
             <th></th>
           </tr>
@@ -61,13 +72,15 @@ function CategoriesTable() {
         <tbody>
           {categories.map((cat, i) => (
             <tr key={cat.name}>
-              <td>{i}</td>
+              <td>{cat.id}</td>
               <td>{cat.name}</td>
               <th className="w-25">
                 <Button variant="secondary" className="me-3">
                   Edit
                 </Button>
-                <Button variant="danger">Delete</Button>
+                <Button variant="danger" onClick={() => deleteCategory(cat.id)}>
+                  Delete
+                </Button>
               </th>
             </tr>
           ))}
